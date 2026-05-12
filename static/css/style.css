@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+/* Frame container */
+.frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -200px;
+    border-radius: 8px;
+    box-shadow: 4px 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
+    background: linear-gradient(to top right, darkmagenta 0%, hotpink 100%);
+    color: #333;
+    font-family: "Open Sans", Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Center content */
+.centre {
+    text-align: center;
+    width: 100%;
+}
+
+/* Title styling */
+.title h1 {
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Dropzone styling */
+.dropzome {
+    border: 2px dashed #fff;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropzome:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+.upload-icon {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.upload-input {
+    display: block;
+    margin: 10px auto;
+    font-size: 1em;
+    color: #fff;
+}
+
+/* Button styling */
+.btn {
+    background: #fff;
+    color: darkmagenta;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background: hotpink;
+    color: #fff;
+}
