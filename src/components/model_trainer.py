@@ -11,7 +11,7 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier,GradientBoostingClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from src.constant import *
-from src.exception import customException
+from src.exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import MainUtils
 
@@ -66,12 +66,12 @@ class ModelTrainer:
 
             return report
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
     def get_best_model(self,
                        x_train:np.array,
                        y_train:np.array,
-                       x_test:np.arr,
+                       x_test:np.array,
                        y_test: np.array):
         
         try:
@@ -103,7 +103,7 @@ class ModelTrainer:
 
             return best_model_name,best_model_object,best_model_score
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
     def finetune_best_model(self,
                             best_model_object:object,
@@ -132,7 +132,7 @@ class ModelTrainer:
             return finetuned_model
         
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
 
     def initiate_model_trainer(self, train_array,test_array):
@@ -202,4 +202,4 @@ class ModelTrainer:
         
 
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)

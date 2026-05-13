@@ -1,9 +1,9 @@
 import sys
 import os
 from src.components.data_ingestion import DataIngestion
-from src.components.data_tranformation import DataTransformation
+from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
-from src.exception import customException
+from src.exception import CustomException
 
 
 
@@ -11,20 +11,20 @@ class TrainingPipeline:
 
     def start_data_ingestion(self):
         try:
-            data_ingestion = data_ingestion()
+            data_ingestion = DataIngestion()
             feature_store_file_path = data_ingestion.initiate_data_ingestion()
             return feature_store_file_path
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
 
     def start_data_transformation(self, feature_store_file_path):
         try:
             data_tranformation = DataTransformation(feature_store_file_path= feature_store_file_path)
-            train_array, test_array, preprocessor_path = data_tranformation.initiate_data_tranformation
+            train_array, test_array, preprocessor_path = data_tranformation.initiate_data_tranformation()
             return train_array,test_array,preprocessor_path
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
 
     def start_model_training(self,train_array,test_array):
         try:
@@ -34,7 +34,7 @@ class TrainingPipeline:
             )
             return model_score
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
     def run_pipeline(self):
         try:
@@ -45,6 +45,6 @@ class TrainingPipeline:
             print("training completed. Trained modelscore:", r2_square)
 
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
 
 

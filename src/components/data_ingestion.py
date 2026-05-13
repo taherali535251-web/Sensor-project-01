@@ -5,7 +5,7 @@ import pandas as pd
 from pymongo import MongoClient
 from zipfile import Path
 from src.constant import *
-from src.exception import customException
+from src.exception import CustomException
 from src.utils.main_utils import MainUtils
 from dataclasses import dataclass
 import logging
@@ -20,12 +20,12 @@ class DataIngestion:
         self.data_ingestion_config= DataIngestionConfig()
         self.utils = MainUtils()
 
-    def export_collection_as_dataframe(self,collevtion_name,db_name):
+    def export_collection_as_dataframe(self,collection_name,db_name):
         
         try:
             mongo_client = MongoClient(MONGO_DB_URL)
 
-            collection = mongo_client[db_name][collevtion_name]
+            collection = mongo_client[db_name][collection_name]
 
             df = pd.DataFrame(list(collection.find()))
 
@@ -36,7 +36,7 @@ class DataIngestion:
 
             return df
         except Exception as e:
-            raise customException(e,sys)
+            raise CustomException(e,sys)
         
     def export_data_into_feature_store_file_path(self)-> pd.DataFrame:
 
@@ -48,7 +48,7 @@ class DataIngestion:
             os.makedirs(raw_file_path,exist_ok=True)
 
             sensor_data = self.export_collection_as_dataframe(
-                collevtion_name= MONGO_COLLECTION_NAME,
+                collection_name= MONGO_COLLECTION_NAME,
                 db_name= MONGO_DATABASE_NAME
             )
 
@@ -60,9 +60,9 @@ class DataIngestion:
 
             return feature_store_file_path
         except Exception as e:
-            raise customException(e, sys)
+            raise CustomException(e, sys)
         
-    def initiate_dat_ingestion(self)-> Path:
+    def initiate_data_ingestion(self)-> Path:
 
         logging.info("Entered initiated_data_ingestion method of data_integration class")
 
@@ -75,7 +75,7 @@ class DataIngestion:
 
             return feature_store_file_path
         except Exception as e:
-            raise customException(e,sys) from e
+            raise CustomException(e,sys) from e
         
         
 
